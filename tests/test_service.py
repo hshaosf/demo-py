@@ -26,4 +26,5 @@ def test_default_error(client):
     assert response.status_code == 404
 
     expected_msg_error = jsend.error('404 - Not Found')
-    assert json.loads(response.content) == expected_msg_error
+    if response.content:
+        assert json.loads(response.content) == expected_msg_error

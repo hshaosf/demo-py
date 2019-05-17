@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="container-fluid">
+    <form class="px-2 py-4 needs-validation" novalidate>
+        <div class="mb-3">Your Business Account Number (BAN) is a 7-digit number. If you don't know it, you can <a href="https://data.sfgov.org/Economy-and-Community/Map-of-Registered-Business-Locations/ednt-jx6u" target="_blank">look it up</a>. If it's not listed, you'll need to register your business or renew your business registration with the <a href="https://sftreasurer.org/account-update" target="_blank">Office of Treasurer and Tax Collector</a>.
+        </div>
+        <div class="form-group mb-3">
+          <label for="InputBanLookup">Enter your Business Account Number (BAN):</label>
+          <input type="text" class="form-control" id="InputBanLookup" minlength="7" maxlength="7" value="0000001" required>
+          <div class="invalid-feedback">
+            must be 7 numbers
+          </div>
+          <div class="alert alert-danger mt-3 d-none" role="alert">We don't have that BAN listed. Check that you've typed it correctly. If you've registered your business in the last 2 days, call 415-xxx-xxxx and they can enter the information for you.</div>
+          <div class="alert alert-warning mt-3 d-none" role="alert">Thank you for trying out this demo. We are experiencing high traffic at the moment. Please try again later.</div>
+        </div>
+        <button type="button" class="btn btn-primary mb-3" id="ButtonBanLookup">Look up address</button>
+        <div class="form-group mb-3 d-none" id="SelectBanLookup">
+          <div class="mb-2">Next, select the address for this permit:</div>
+          <div class="form-selection">
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio">
+              <label class="form-check-label"></label>
+            </div>
+          </div>
+          <button type="button" class="btn btn-primary mb-3" id="ButtonBanChoose">Choose this location</button>
+        </div>
+        <div class="form-group mb-3">
+          <label>Business Account number</label>
+          <input type="text" class="form-control" data-field-name="BAN" readonly>
+          <input type="hidden" data-field-name="LIN">
+        </div>
+        <div class="form-group mb-3">
+          <label>Business name</label>
+          <input type="text" class="form-control" data-field-name="BusinessName" readonly>
+        </div>
+        <div class="form-group mb-3">
+          <label>Trade name (DBA, the name you are Doing Business As)</label>
+          <input type="text" class="form-control" data-field-name="DBAName" readonly>
+        </div>
+        <div class="form-row mb-3">
+          <div class="form-group col">
+            <label>Permit address</label>
+            <input type="text" class="form-control" data-field-name="StreetAddress" readonly>
+          </div>
+          <div class="form-group col">
+            <label>Permit city</label>
+            <input type="text" class="form-control" data-field-name="City" readonly>
+          </div>
+        </div>
+        <div class="form-row mb-3">
+          <div class="form-group col">
+            <label>Permit state</label>
+            <input type="text" class="form-control" data-field-name="State" readonly>
+          </div>
+          <div class="form-group col">
+            <label>Permit zip</label>
+            <input type="text" class="form-control" data-field-name="PostalCd" readonly>
+          </div>
+        </div>
+        <div class="form-row mb-3">
+          <div class="form-group col">
+            <label>Mailing address</label>
+            <input type="text" class="form-control" data-field-name="MailingAddress" readonly>
+          </div>
+          <div class="form-group col">
+            <label>Mailing city</label>
+            <input type="text" class="form-control" data-field-name="MailCity" readonly>
+          </div>
+        </div>
+        <div class="form-row mb-3">
+          <div class="form-group col">
+            <label>Mailing state</label>
+            <input type="text" class="form-control" data-field-name="MailState" readonly>
+          </div>
+          <div class="form-group col">
+            <label>Mailing zip</label>
+            <input type="text" class="form-control" data-field-name="MailZip" readonly>
+          </div>
+         </div>
+        <div class="mb-3">If the address above is not correct, <a href="http://sftreasurer.org/account-update" target="_blank">update your Business Account with the Treasurer and Tax Collector</a>.</div>
+    </form>
+  </div>
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="/svc/config.js"></script>
+  <script src="js/web.js"></script>
+</body>
+
+</html>
