@@ -2,11 +2,11 @@
 (function (_d, _w, _t, $) {
   var demo = {
     cmn: {
-      supportLocalStorage: function () { return (_w.localStorage != undefined) },
+      supportLocalStorage: function () { return (_w.localStorage !== undefined) },
       setItem: function (key, value) { if (this.supportLocalStorage()) { _w.localStorage.setItem(key, value); return true } return false },
       getItem: function (key) { if (this.supportLocalStorage()) { return _w.localStorage.getItem(key) } return null },
-      setItemObj: function (key, value) { return setItem(key, JSON.stringify(value)) },
-      getItemObj: function (key) { var o = getItem(key); if (o) { o = JSON.parse(o) } return o },
+      setItemObj: function (key, value) { return this.setItem(key, JSON.stringify(value)) },
+      getItemObj: function (key) { var o = this.getItem(key); if (o) { o = JSON.parse(o) } return o },
       removeItem: function (key) { if (this.supportLocalStorage()) { return _w.localStorage.removeItem(key) } return false },
       clearStorage: function () { if (this.supportLocalStorage()) { return _w.localStorage.clear() } return false },
       set: function (key, value) { _t[key] = value },
@@ -25,11 +25,11 @@
         _t.demo.ban.clearError()
         _t.demo.hideEl('#SelectBanLookup', false)
         var v = $('#InputBanLookup').val()
-        if (v.length == 7 && v.match(/[0-9]/g)) {
+        if (v.length === 7 && v.match(/[0-9]/g)) {
           if (_t.demo.isSvcsEnabled()) {
             $('#SelectBanLookup .form-selection').html('')
             _t.demo.ban.loading(true)
-            $.get(__svcs.ban + '&id=' + v, _t.demo.ban.selection)
+            $.get(_w.__svcs.ban + '&id=' + v, _t.demo.ban.selection)
           }
         } else {
           _t.demo.ban.error(false)
@@ -37,21 +37,21 @@
       },
       selection: function (d) {
         _t.demo.ban.loading(false)
-        if (d.status == 'success' && Array.isArray(d.data.locations) && d.data.locations.length) {
+        if (d.status === 'success' && Array.isArray(d.data.locations) && d.data.locations.length) {
           var data = d.data.locations
           _t.demo.cmn.set('ban_data', data)
           for (var i = 0; i < data.length; i++) {
             var item = _t.demo.cmn.get('select_tpl').clone()
-            var item_id = 'select-lin-' + data[i].LIN
-            var item_name = 'select-ban-' + data[i].BAN
-            var item_text = data[i].DBAName + ', ' + data[i].StreetAddress + ', ' + data[i].City + ', ' + data[i].State + ', ' + data[i].PostalCd + ' (' + data[i].LIN + ')'
-            item.children('.form-check-input').attr('id', item_id).attr('name', item_name).attr('data-id', i)
-            item.children('.form-check-label').text(item_text).attr('for', item_id)
+            var itemId = 'select-lin-' + data[i].LIN
+            var itemName = 'select-ban-' + data[i].BAN
+            var itemText = data[i].DBAName + ', ' + data[i].StreetAddress + ', ' + data[i].City + ', ' + data[i].State + ', ' + data[i].PostalCd + ' (' + data[i].LIN + ')'
+            item.children('.form-check-input').attr('id', itemId).attr('name', itemName).attr('data-id', i)
+            item.children('.form-check-label').text(itemText).attr('for', itemId)
             $('#SelectBanLookup .form-selection').append(item)
           }
           _t.demo.showEl('#SelectBanLookup', true)
         } else {
-          if (d.status == 'error') {
+          if (d.status === 'error') {
             _t.demo.ban.error(true)
           } else {
             _t.demo.ban.fail()
@@ -69,17 +69,17 @@
           _t.demo.hideEl('#SelectBanLookup', true)
         }
       },
-      loading: function (is_loading) {
-        if (is_loading) {
+      loading: function (isLoading) {
+        if (isLoading) {
           $('#ButtonBanLookup').append('<span class="spinner-border spinner-border-sm ml-3" role="status" aria-hidden="true"></span>')
         } else {
           $("[role='status']").remove()
         }
       },
-      error: function (show_alert) {
+      error: function (showAlert) {
         $('#InputBanLookup').addClass('is-invalid')
         $('#InputBanLookup ~ .invalid-feedback').show()
-        if (show_alert) {
+        if (showAlert) {
           $('#InputBanLookup ~ .invalid-feedback').hide()
           _t.demo.showEl('#InputBanLookup ~ .alert-danger')
         }
@@ -106,13 +106,13 @@
       $('.alert').addClass('d-none')
     },
     setInput: function (el, value) {
-      var is_readyonly = $(el).prop('readonly')
-      if (is_readyonly) { $(el).prop('readonly', false) }
+      var isReadOnly = $(el).prop('readonly')
+      if (isReadOnly) { $(el).prop('readonly', false) }
       $(el).val(value)
-      if (is_readyonly) { $(el).prop('readonly', true) }
+      if (isReadOnly) { $(el).prop('readonly', true) }
     },
     isSvcsEnabled: function () {
-      return (typeof __svcs !== 'undefined')
+      return (typeof _w.__svcs !== 'undefined')
     },
     init: function () {
     },
@@ -124,4 +124,4 @@
   }
   _t = { demo: demo }
   $(_d).ready(function () { _t.demo.ready() })
-})(document, window, {}, jQuery)
+})(document, window, {}, window.jQuery)
