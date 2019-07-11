@@ -1,0 +1,9 @@
+{
+  "name": "demo-py-package",
+  "devDependencies": {
+    "standard": "*"
+  },
+  "scripts": {
+    "test": "standard"
+  }
+}
