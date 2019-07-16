@@ -64,7 +64,8 @@
         if (i < data.length) {
           var item = data[i]
           for (var p in item) {
-            _t.demo.setInput('input[data-field-name="' + p + '"]', item[p])
+            $('*[data-field-name="' + p + '"]').each(
+              function () { _t.demo.setValue($(this), item[p]) })
           }
           _t.demo.hideEl('#SelectBanLookup', true)
         }
@@ -105,11 +106,15 @@
     clearAlerts: function () {
       $('.alert').addClass('d-none')
     },
-    setInput: function (el, value) {
-      var isReadOnly = $(el).prop('readonly')
-      if (isReadOnly) { $(el).prop('readonly', false) }
-      $(el).val(value)
-      if (isReadOnly) { $(el).prop('readonly', true) }
+    setValue: function (el, value) {
+      if ($(el).is('input')) {
+        var isReadOnly = $(el).prop('readonly')
+        if (isReadOnly) { $(el).prop('readonly', false) }
+        $(el).val(value)
+        if (isReadOnly) { $(el).prop('readonly', true) }
+      } else {
+        $(el).html(value)
+      }
     },
     isSvcsEnabled: function () {
       return (typeof _w.__svcs !== 'undefined')
